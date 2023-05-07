@@ -1,8 +1,9 @@
-spring:
-  data:
-    mongodb:
-      database: filtredb-t2
-      uri: mongodb://localhost:27017
-      username: turkcell
-      password: 12345
-
+version: '3.8'
+services:
+  mongodb:
+    container_name: turkcell2-filterdb
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - "/data/db/"
