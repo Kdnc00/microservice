@@ -1,6 +1,6 @@
 spring:
   application:
-    name: stock
+    name: inventory-service
   datasource:
     username: postgres
     password: '12345'
@@ -11,14 +11,29 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-eureka:
+  kafka:
+    producer:
+      bootstrap-servers: http://localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: http://localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+ureka:
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
       defaultZone: http://localhost:8761/eureka
   instance:
-    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+    instance-id: ${spring.application.name}:${random.value}
     prefer-ip-address: true
 server:
   port: 0
