@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.kodlamaio</groupId>
 	<artifactId>rental-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1.0-SNAPSHOT</version>
 	<name>rental-service</name>
 	<description>This is a rental service for microservice project</description>
 	<properties>
@@ -36,7 +36,23 @@
 		 <artifactId>resilience4j-retry</artifactId>
 		 <version>2.0.2</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.kodlamaio</groupId>
+            <artifactId>inventory-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+	<repositories>
+		<repository>
+			<id>snapshot-repo</id>
+			<url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
